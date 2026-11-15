@@ -1,0 +1,13 @@
+//STMT010  JOB (CARDS),'STMT RECEIVE',CLASS=A,MSGCLASS=X
+//*
+//* RECEIVE THE DAILY ACCOUNT EXTRACT DROPPED ON THE TRANSFER SERVER
+//*
+//GETFILE  EXEC PGM=FTP,PARM='xfer-eu.bank.internal (EXIT'
+//SYSPRINT DD SYSOUT=*
+//OUTPUT   DD SYSOUT=*
+//INPUT    DD *
+cd /inbound/statements
+locsite recfm=fb lrecl=400
+mget STMTIN_*.dat 'CRD.STMT.DAILY.IN'
+quit
+/*
